@@ -4,9 +4,9 @@ import {createRef, useEffect, useState} from 'react';
 import MonacoEditor from 'react-monaco-editor';
 import {uiUrl} from '../../base';
 import {ScopedLocalStorage} from '../../scoped-local-storage';
+import {Button} from '../button';
 import {parse, stringify} from '../object-parser';
 import {PhaseIcon} from '../phase-icon';
-import {ToggleButton} from '../toggle-button';
 
 interface Props<T> {
     type?: string;
@@ -29,8 +29,10 @@ export const ObjectEditor = <T extends any>({type, value, buttons, onChange}: Pr
     useEffect(() => {
         // we ONLY want to change the text, if the normalized version has changed, this prevents white-space changes
         // from resulting in a significant change
-        if (text !== stringify(parse(editor.current.editor.getValue()), lang)) {
-            editor.current.editor.setValue(text);
+        const editorText = stringify(parse(editor.current.editor.getValue()), lang);
+        const editorLang = editor.current.editor.getValue().startsWith('{') ? 'json' : 'yaml';
+        if (text !== editorText || lang !== editorLang) {
+            editor.current.editor.setValue(stringify(parse(text), lang));
         }
     }, [text, lang]);
 
@@ -62,13 +64,39 @@ export const ObjectEditor = <T extends any>({type, value, buttons, onChange}: Pr
     }, [lang, type]);
 
     const editor = createRef<MonacoEditor>();
+    // this calculation is rough, it is probably hard to work for for every case, essentially it is:
+    // some pixels above and below for buttons, plus a bit of a buffer/padding
+    const height = Math.max(600, window.innerHeight * 0.9 - 250);
 
     return (
         <>
             <div style={{paddingBottom: '1em'}}>
-                <ToggleButton toggled={lang === 'yaml'} onToggle={() => setLang(lang === 'yaml' ? 'json' : 'yaml')}>
-                    YAML
-                </ToggleButton>
+                <Button outline={true} onClick={() => setLang(lang === 'yaml' ? 'json' : 'yaml')}>
+                    <span style={{fontWeight: lang === 'json' ? 'bold' : 'normal'}}>JSON</span>/<span style={{fontWeight: lang === 'yaml' ? 'bold' : 'normal'}}>YAML</span>
+                </Button>
+
+                {Object.keys(value).map(x => (
+                    <Button
+                        key={x}
+                        icon='caret-right'
+                        outline={true}
+                        onClick={() => {
+                            // Attempt to move the the correct section of the document. Ideally, we'd have the line at the top of the
+                            // editor, but Monaco editor does not have method for this (e.g. `revealLineAtTop`).
+
+                            // find the line for the section in either YAML or JSON
+                            const index = text.split('\n').findIndex((y, i) => (lang === 'yaml' ? y.startsWith(x + ':') : y.includes('"' + x + '":')));
+
+                            if (index >= 0) {
+                                const lineNumber = index + 1;
+                                editor.current.editor.revealLineInCenter(lineNumber);
+                                editor.current.editor.setPosition({lineNumber, column: 0});
+                                editor.current.editor.focus();
+                            }
+                        }}>
+                        {x}
+                    </Button>
+                ))}
                 {buttons}
             </div>
             <div>
@@ -77,7 +105,7 @@ export const ObjectEditor = <T extends any>({type, value, buttons, onChange}: Pr
                     key='editor'
                     defaultValue={text}
                     language={lang}
-                    height='400px'
+                    height={height + 'px'}
                     options={{
                         readOnly: onChange === null,
                         minimap: {enabled: false},
