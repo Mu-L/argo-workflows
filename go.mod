@@ -64,7 +64,7 @@ require (
 	k8s.io/klog/v2 v2.100.1
 	k8s.io/kube-openapi v0.0.0-20230515203736-54b630e78af5
 	k8s.io/utils v0.0.0-20230505201702-9f6742963106
-	sigs.k8s.io/yaml v1.3.0
+	sigs.k8s.io/yaml v1.4.0
 	upper.io/db.v3 v3.8.0+incompatible
 )
 
