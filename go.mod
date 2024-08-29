@@ -52,8 +52,8 @@ require (
 	golang.org/x/oauth2 v0.22.0
 	golang.org/x/sync v0.8.0
 	golang.org/x/time v0.6.0
-	google.golang.org/api v0.194.0
-	google.golang.org/genproto v0.0.0-20240814211410-ddb44dafa142 // indirect
+	google.golang.org/api v0.195.0
+	google.golang.org/genproto v0.0.0-20240823204242-4ba0660f739c // indirect
 	google.golang.org/grpc v1.65.0
 	gopkg.in/go-playground/webhooks.v5 v5.17.0
 	gopkg.in/jcmturner/gokrb5.v5 v5.3.0
@@ -70,7 +70,7 @@ require (
 
 require (
 	cloud.google.com/go v0.115.1 // indirect
-	cloud.google.com/go/iam v1.1.12 // indirect
+	cloud.google.com/go/iam v1.1.13 // indirect
 	github.com/Azure/azure-sdk-for-go v68.0.0+incompatible // indirect
 	github.com/Azure/go-autorest v14.2.0+incompatible // indirect
 	github.com/Azure/go-autorest/autorest v0.11.29 // indirect
@@ -197,7 +197,7 @@ require (
 
 require (
 	github.com/google/go-containerregistry/pkg/authn/k8schain v0.0.0-20230625233257-b8504803389b
-	google.golang.org/genproto/googleapis/api v0.0.0-20240730163845-b1a4ccb954bf
+	google.golang.org/genproto/googleapis/api v0.0.0-20240814211410-ddb44dafa142
 )
 
 require (
@@ -242,7 +242,7 @@ require (
 	golang.org/x/exp v0.0.0-20240416160154-fe59bbe5cc7f // indirect
 	golang.org/x/mod v0.17.0 // indirect
 	golang.org/x/tools v0.21.1-0.20240508182429-e35e4ccd0d2d // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20240814211410-ddb44dafa142 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20240823204242-4ba0660f739c // indirect
 	moul.io/http2curl/v2 v2.3.0 // indirect
 )
 
