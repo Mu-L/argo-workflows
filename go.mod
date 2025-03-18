@@ -1,6 +1,7 @@
 module github.com/argoproj/argo-workflows/v3
 
 go 1.18
+toolchain go1.24.1
 
 require (
 	cloud.google.com/go/storage v1.43.0
@@ -29,7 +30,7 @@ require (
 	github.com/grpc-ecosystem/grpc-gateway v1.16.0
 	github.com/imkira/go-interpol v1.1.0 // indirect
 	github.com/klauspost/pgzip v1.2.6
-	github.com/minio/minio-go/v7 v7.0.84
+	github.com/minio/minio-go/v7 v7.0.88
 	github.com/prometheus/client_golang v1.21.1
 	github.com/prometheus/client_model v0.6.1
 	github.com/prometheus/common v0.62.0
@@ -216,7 +217,7 @@ require (
 	github.com/go-jose/go-jose/v4 v4.0.5 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/gobwas/glob v0.2.4-0.20181002190808-e7a84e9525fe // indirect
-	github.com/goccy/go-json v0.10.4 // indirect
+	github.com/goccy/go-json v0.10.5 // indirect
 	github.com/google/gnostic-models v0.6.8 // indirect
 	github.com/google/go-containerregistry/pkg/authn/kubernetes v0.0.0-20230516205744-dbecb1de8cfa // indirect
 	github.com/google/s2a-go v0.1.9 // indirect
@@ -224,6 +225,7 @@ require (
 	github.com/klauspost/cpuid/v2 v2.2.9 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
+	github.com/minio/crc64nvme v1.0.1 // indirect
 	github.com/mitchellh/go-wordwrap v1.0.1 // indirect
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
 	github.com/mxk/go-flowrate v0.0.0-20140419014527-cca7078d478f // indirect
